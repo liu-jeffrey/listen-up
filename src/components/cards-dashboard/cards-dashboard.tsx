@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import cardProps from "./cards-dashboard-types";
 import useStyles from "./cards-dashboard-styles";
 import CardDialog from "../cards-dialogue/cards-dialog";
-import { stringify } from "../../utils/StringUtils";
+import { stringify } from "../../utils/StringUtils.js";
 import { List, ListItem, ListItemText } from "@material-ui/core";
 
 export default function CardDashboard(props: cardProps) {

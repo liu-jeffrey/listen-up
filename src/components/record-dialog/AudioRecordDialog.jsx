@@ -221,38 +221,10 @@ function AudioRecordDialog(props) {
     }
 
     const storeData = (data) => {
+        console.log("Storing Data.");
         if (speaker == null)
             return;
-        if (parseFloat(data.score) > 0.75) {
-            var today = new Date();
-            var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            var dateTime = date+' '+time;
-            const personModel = {
-                name: speaker,
-                date: dateTime,
-                transcript: {
-                    CONSUMER_GOOD: [],
-                    LOCATION: [],
-                    PERSON: [],
-                    ORGANIZATION: [],
-                    OTHER: []
-                }
-            };
-
-            if (data && data.keyPhrases) {
-                data.keyPhrases.forEach((phrase) => {
-                    if (phrase.type === "CONSUMER_GOOD"
-                     || phrase.type === "LOCATION"
-                     || phrase.type === "PERSON"
-                     || phrase.type === "ORGANIZATION"
-                     || phrase.type === "OTHER") {
-                         personModel.transcript[phrase.type].push(phrase.name);
-                     }
-                     addUserData(personModel);
-                });
-            }
-        }
+        addUserData(data, speaker);
     }
 
     const StopRecognitionSuccess = () => {

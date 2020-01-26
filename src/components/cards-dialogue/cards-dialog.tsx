@@ -5,7 +5,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { stringify } from "../../utils/StringUtils";
+import { stringify } from "../../utils/StringUtils.js";
 
 import dialogProps from "./cards-dialog-types";
 import { Typography, List, ListItem, ListItemText } from "@material-ui/core";
