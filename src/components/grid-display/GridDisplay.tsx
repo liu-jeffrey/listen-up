@@ -30,7 +30,7 @@ export default function CardGridDisplay() {
           </GridListTile>
           {peopleListData.map(person => (
             <GridListTile>
-              <CardDashboard person={person} />
+              <CardDashboard person={person} key={person.name} />
             </GridListTile>
           ))}
         </GridList>

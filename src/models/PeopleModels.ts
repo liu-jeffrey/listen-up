@@ -5,9 +5,10 @@ export default interface IPersonModel {
 }
 
 export interface ITranscript {
-    giftIdeas?: string[],
-    locationsOfInterest?: string[],
-    friends?: string[],
-    organization?: string[],
+    CONSUMER_GOOD?: string[],
+    LOCATION?: string[],
+    PERSON?: string[],
+    ORGANIZATION?: string[],
+    OTHER?: string[],
     [x: string]: string[] | undefined,
 }

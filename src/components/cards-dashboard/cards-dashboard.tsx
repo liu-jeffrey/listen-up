@@ -26,9 +26,7 @@ export default function CardDashboard(props: cardProps) {
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
             {props.person.date}
-            {stringify(props.person.transcript).map(string => (
-              <Typography>{string}</Typography>
-            ))}
+            {stringify(props.person.transcript)}
           </Typography>
           <Typography variant="body2" component="p">
             {/* props.person.transcript */}
