@@ -14,7 +14,7 @@ function App() {
 
   const toggleDrawerOpen = () => {
     setDrawerState(!isDrawerOpen);
-  }
+  };
 
   const toggleAudioDialogOpen = () => {
     setAudioDialogState(!isAudioDialogOpen);
