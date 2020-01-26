@@ -6,15 +6,35 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
+        height: '100%',
+        flexGrow: 1,
         overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
     },
-    gridList: {
-        width: 500,
-        height: 450,
+    // gridList: {
+    //     width: 500,
+    //     height: "100%",
+    // },
+    // list: {
+    //     display: 'flex',
+    //     flexDirection: 'row',
+    //     justifyContent: 'flex-start',
+    //     height: '75%',
+    // },
+    // icon: {
+    //     color: 'rgba(255, 255, 255, 0.54)',
+    // },
+    verticalCont: {
+        display: 'flex',
+        flexDirection: 'column',
     },
-    icon: {
-        color: 'rgba(255, 255, 255, 0.54)',
+    CardDashboard: {
+        padding: '1vw',
+        height: '100%',
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
     },
 }));
 
