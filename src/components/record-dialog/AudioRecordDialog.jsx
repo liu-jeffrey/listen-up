@@ -10,7 +10,9 @@ import useStyles from "./audioRecordDialogStyles";
 import Fab from "@material-ui/core/Fab";
 import MicIcon from '@material-ui/icons/Mic';
 import * as SpeechSDK from 'microsoft-cognitiveservices-speech-sdk';
-import classifyText from '../../utils/StringClassification';
+
+import { addUserData } from '../../firebase/firebase';
+import IPersonModel from '../../models/PeopleModels';
 
 /**
  *      
@@ -133,7 +135,7 @@ function AudioRecordDialog(props) {
                     }
                 });
 
-                console.log("Done!");
+                console.log("Azure done: ");
                 console.log(JSON.stringify(data));
                 UpdateSpeakerRecognition(text, data);
             }
@@ -177,8 +179,76 @@ function AudioRecordDialog(props) {
     }
     
     const secondClassification = async (text, data) => {
-        const res = await classifyText(text);
-        console.log("Google Classification: " + res);
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("Google Classification: " + this.responseText);
+                const partData = JSON.parse(this.responseText);
+                partData.entities.forEach((entity) => {
+                    let augment = false;
+                    data.keyPhrase.forEach((p) => {
+                        if (   entity.name.includes(p.phrase)
+                            || p.phrase.includes(entity.name)
+                            || p.phrase == entity.name) {
+                            p.type = entity.type;
+                            augment = true;
+                        }
+                    });
+                    if (!augment) {
+                        data.keyPhrase.push({
+                            "phrase": entity.name,
+                            "type": entity.type
+                        });
+                    }
+                });
+
+                console.log("Google done: ");
+                console.log(JSON.stringify(data));
+
+                storeData(data);
+            }
+        };
+        xmlhttp.open("POST", "https://language.googleapis.com/v1/documents:analyzeEntities?key=AIzaSyCDJyeShZH6Zxsh21hI0Uq5hoxp-UFLYXY");
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        xmlhttp.send(JSON.stringify(
+            {
+                "document": {
+                    content: text,
+                    type: 'PLAIN_TEXT',
+                }
+            }
+        ));
+    }
+
+    const storeData = (data) => {
+        if (parseFloat(data.score) > 0.75) {
+            var today = new Date();
+            var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            var dateTime = date+' '+time;
+            const personModel = {
+                name: speaker,
+                date: dateTime,
+                transcript: {
+                    CONSUMER_GOOD: [],
+                    LOCATION: [],
+                    PERSON: [],
+                    ORGANIZATION: [],
+                    OTHER: []
+                }
+            };
+
+            data.keyPhrases.forEach((phrase) => {
+                if (phrase.type == "CONSUMER_GOOD"
+                 || phrase.type == "LOCATION"
+                 || phrase.type == "PERSON"
+                 || phrase.type == "ORGANIZATION"
+                 || phrase.type == "OTHER") {
+                     personModel.transcript[phrase.type].push(phrase.name);
+                 }
+                 addUserData(personModel);
+            });
+        }
     }
 
     const StopRecognitionSuccess = () => {
