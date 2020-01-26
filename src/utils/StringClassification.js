@@ -16,5 +16,3 @@ const classifyText = async (text) => {
 }
 
 classifyText();
-
-export default classifyText;

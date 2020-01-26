@@ -1,5 +1,6 @@
 // Initialize Cloud Firestore through Firebase
 import * as firebase from "firebase";
+import IPersonDataModel from '../models/PeopleModels';
 
 var firebaseConfig = {
     apiKey: "AIzaSyArkvEPIK6_QC3otybxIxEZNiKR9iPu9gw",
@@ -17,6 +18,6 @@ firebase.initializeApp(
 
 export const db = firebase.firestore();
 
-export const addUserData = (personData) => {
-    db.collection("people").doc(personData.id).set(personData, { merge:true })
+export const addUserData = (personData: IPersonDataModel) => {
+    db.collection("people").doc(personData.name).set(personData, { merge:true })
 }
