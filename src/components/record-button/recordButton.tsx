@@ -10,6 +10,7 @@ const RecordButton = (props: types.RecordButtonProps) => {
     const isDrawerOpen = props.isDrawerOpen;
 
     const handleClick = () => {
+        console.log("clicked");
         props.toggleDialogOpen();
     };
 

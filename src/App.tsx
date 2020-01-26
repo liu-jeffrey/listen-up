@@ -23,6 +23,7 @@ function App() {
 
   return (
     <div className={clsx("App", classes.root)}>
+      <script src="microsoft.cognitiveservices.speech.sdk.bundle-min.js"></script>
       <CssBaseline />
       <AudioRecordDialog isOpen={isAudioDialogOpen} toggleDialogOpen={toggleAudioDialogOpen} />
       <MainAppBar isDrawerOpen={isDrawerOpen} toggleDrawerOpen={toggleDrawerOpen} />
