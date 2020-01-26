@@ -10,6 +10,7 @@ import { MainDrawerProps, IMainDrawerState } from "./mainDrawer.type";
 import styles from "./mainDrawerStyles";
 import PersonIcon from '@material-ui/icons/Person';
 import { db } from "../../firebase/firebase";
+import IPersonModel from "../../models/PeopleModels";
 
 class MainDrawer extends Component<MainDrawerProps, IMainDrawerState> {
     public state = {
@@ -18,9 +19,9 @@ class MainDrawer extends Component<MainDrawerProps, IMainDrawerState> {
 
     public componentDidMount() {
         db.collection("people").onSnapshot((snapShot) => {
-            let docList: any[] = [];
+            let docList: IPersonModel[] = [];
             snapShot.forEach((doc) => {
-              docList.push(doc.data());
+              docList.push(doc.data() as IPersonModel);
             });
 
             this.setState({

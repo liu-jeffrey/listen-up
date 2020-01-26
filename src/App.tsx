@@ -6,6 +6,7 @@ import MainDrawer from './components/drawer/MainDrawer';
 import MainAppBar from './components/app-bar/MainAppBar';
 import { CssBaseline } from '@material-ui/core';
 import AudioRecordDialog from './components/record-dialog/AudioRecordDialog';
+import MainView from './components/main-view/MainView';
 
 function App() {
   const classes = useStyles();
@@ -26,7 +27,7 @@ function App() {
       <AudioRecordDialog isOpen={isAudioDialogOpen} toggleDialogOpen={toggleAudioDialogOpen} />
       <MainAppBar isDrawerOpen={isDrawerOpen} toggleDrawerOpen={toggleDrawerOpen} />
       <MainDrawer isDrawerOpen={isDrawerOpen} toggleDrawerOpen={toggleDrawerOpen} toggleDialogOpen={toggleAudioDialogOpen} />
-      <RecordButton isDrawerOpen={isDrawerOpen} toggleDialogOpen={toggleAudioDialogOpen} />
+      <MainView />
     </div>
   );
 }

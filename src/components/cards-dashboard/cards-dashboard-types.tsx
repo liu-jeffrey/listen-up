@@ -1,6 +1,5 @@
-export default interface cardProps {
-  date: string;
-  guestName: string;
-  keyWords: string[];
-  transcript: string;
+import IPersonModel from '../../models/PeopleModels';
+
+export default interface dialogProps {
+  person: IPersonModel;
 }

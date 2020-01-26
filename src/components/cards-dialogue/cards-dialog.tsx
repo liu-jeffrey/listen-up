@@ -5,8 +5,10 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { stringify } from "../../utils/StringUtils";
 
-import { dialogProps } from "./cards-dialog-types";
+import dialogProps from "./cards-dialog-types";
+import { Typography } from "@material-ui/core";
 
 export default function CardDialog(props: dialogProps) {
   const [scroll, setScroll] = React.useState<DialogProps["scroll"]>("paper");
@@ -29,14 +31,17 @@ export default function CardDialog(props: dialogProps) {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">{ props.guestName }</DialogTitle>
+        <DialogTitle id="scroll-dialog-title">{ props.person.name }</DialogTitle>
         <DialogContent dividers={scroll === "paper"}>
           <DialogContentText
             id="scroll-dialog-description"
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            {props.transcript}
+            {props.person.date}
+            {stringify(props.person.transcript).map(string => (
+              <Typography>{string}</Typography>
+            ))}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

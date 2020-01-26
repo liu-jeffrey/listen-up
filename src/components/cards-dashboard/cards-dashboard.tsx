@@ -4,29 +4,10 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { DialogProps } from "@material-ui/core/Dialog";
-
 import cardProps from "./cards-dashboard-types";
 import useStyles from "./cards-dashboard-styles";
 import CardDialog from "../cards-dialogue/cards-dialog";
-
-function stringify(strArr: string[]): string {
-  const length: number = strArr.length;
-
-  if (length === 1) {
-    return strArr[0];
-  } else {
-    let strSoFar: string = "";
-    for (let i = 0; i < length; i++) {
-      if (i === length - 1) {
-        strSoFar += strArr[i];
-      } else {
-        strSoFar += strArr[i] + ", ";
-      }
-    }
-    return strSoFar;
-  }
-}
+import { stringify } from "../../utils/StringUtils";
 
 export default function CardDashboard(props: cardProps) {
   const classes = useStyles();
@@ -38,16 +19,19 @@ export default function CardDashboard(props: cardProps) {
 
   return (
     <React.Fragment>
-      <Card className={classes.card}>
+      <Card className={classes.card} variant="outlined">
         <CardContent>
           <Typography variant="h5" component="h2">
-            {props.guestName}
+            {props.person.name}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            {props.date}
+            {props.person.date}
+            {stringify(props.person.transcript).map(string => (
+              <Typography>{string}</Typography>
+            ))}
           </Typography>
           <Typography variant="body2" component="p">
-            {stringify(props.keyWords)}
+            {/* props.person.transcript */}
           </Typography>
         </CardContent>
         <CardActions>
@@ -55,10 +39,7 @@ export default function CardDashboard(props: cardProps) {
         </CardActions>
       </Card>
       <CardDialog
-        date={props.date}
-        guestName={props.guestName}
-        keyWords={props.keyWords}
-        transcript={props.transcript}
+        person={props.person}
         isOpen={open}
         toggleDialog={toggleDialogOpen}
       />
