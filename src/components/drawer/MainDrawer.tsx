@@ -1,4 +1,4 @@
-import { withStyles } from "@material-ui/core";
+import { withStyles, ListItem, List, ListItemIcon, ListItemText } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
@@ -6,10 +6,29 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import clsx from "clsx";
 import React, { Component } from "react";
 import RecordButton from '../record-button/recordButton';
-import { MainDrawerProps } from "./mainDrawer.type";
+import { MainDrawerProps, IMainDrawerState } from "./mainDrawer.type";
 import styles from "./mainDrawerStyles";
+import PersonIcon from '@material-ui/icons/Person';
+import { db } from "../../firebase/firebase";
 
-class MainDrawer extends Component<MainDrawerProps, {}> {
+class MainDrawer extends Component<MainDrawerProps, IMainDrawerState> {
+    public state = {
+        peopleDataList: [],
+    };
+
+    public componentDidMount() {
+        db.collection("people").onSnapshot((snapShot) => {
+            let docList: any[] = [];
+            snapShot.forEach((doc) => {
+              docList.push(doc.data());
+            });
+
+            this.setState({
+                peopleDataList: docList,
+            });
+        })
+    }
+
     public render() {
         const { classes } = this.props;
         const open = this.props.isDrawerOpen;
@@ -27,7 +46,17 @@ class MainDrawer extends Component<MainDrawerProps, {}> {
                     </IconButton>
                 </div>
                 <Divider />
-                <RecordButton isDrawerOpen={this.props.isDrawerOpen} />
+                <RecordButton isDrawerOpen={this.props.isDrawerOpen} toggleDialogOpen={this.props.toggleDialogOpen} />
+                <List>
+                    {this.state.peopleDataList.map(person => (
+                        <ListItem button={true} key="Trash">
+                            <ListItemIcon>
+                                    <PersonIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Trash" />
+                        </ListItem>
+                    ))}
+                </List>
             </Drawer>
         );
     }
