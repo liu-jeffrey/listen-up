@@ -5,8 +5,8 @@ import useStyles from "./appStyles";
 import MainDrawer from "./components/drawer/MainDrawer";
 import MainAppBar from "./components/app-bar/MainAppBar";
 import { CssBaseline } from "@material-ui/core";
-import SimpleCard from "./components/cards-dashboard/cards-dashboard";
-import ScrollDialog from "./components/cards-dialogue/cards-dialogue";
+import CardDashboard from "./components/cards-dashboard/cards-dashboard";
+import ScrollDialog from "./components/cards-dialogue/cards-dialog";
 
 function App() {
   const classes = useStyles();
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div className={clsx("App", classes.root)}>
-      <CssBaseline />
+      {/* <CssBaseline />
       <MainAppBar
         isDrawerOpen={isDrawerOpen}
         toggleDrawerOpen={toggleDrawerOpen}
@@ -27,13 +27,8 @@ function App() {
         isDrawerOpen={isDrawerOpen}
         toggleDrawerOpen={toggleDrawerOpen}
       />
-      <RecordButton isDrawerOpen={isDrawerOpen} />
-      <SimpleCard
-        date={"January 25th, 2020"}
-        guestName={"Ollie"}
-        keyWords={["thick", "girth", "treemap"]}
-      />
-      <ScrollDialog
+      <RecordButton isDrawerOpen={isDrawerOpen} /> */}
+      <CardDashboard
         date={"January 25th, 2020"}
         guestName={"Ollie"}
         keyWords={["thick", "girth", "treemap"]}
