@@ -43,7 +43,6 @@ function AudioRecordDialog(props) {
     };
     const StartRecognitionFaileur = (err) => {
         alert("Error Starting to Recording");
-        CloseRecognizer();
     }
 
     const RecognizingEventListener = (sender, event) => {
@@ -177,7 +176,7 @@ function AudioRecordDialog(props) {
         }
         secondClassification(text, data);
     }
-    
+
     const secondClassification = async (text, data) => {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -192,6 +191,26 @@ function AudioRecordDialog(props) {
                             || p.phrase == entity.name) {
                             p.type = entity.type;
                             augment = true;
+                        }
+
+                        if (text.toLowerCase().startsWith("hey")) {
+                            let name = null;
+                            if (p.type === "PERSON") {
+                                name = p.phrase;
+                            }
+                            let splitString = text.split(" ")
+                            if (name && splitString.length > 1) {
+                                let testName = splitString[1];
+                                let punctuationless = testName.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+                                testName = punctuationless.replace(/\s{2,}/g, " ");
+
+                                if (name.includes(testName)) {
+                                    speaker = name;
+
+                                    console.log("New Name: " + name);
+                                    return;
+                                }
+                            }
                         }
                     });
                     if (!augment) {
@@ -229,16 +248,17 @@ function AudioRecordDialog(props) {
 
     const StopRecognitionSuccess = () => {
         console.log("Stopped Recording");
-        CloseRecognizer();
     }
+
     const StopRecognitionFaileur = (err) => {
         alert("Error Stopping Recording");
-        CloseRecognizer();
     }
-    const CloseRecognizer = () => {
-        recognizer.close();
-        recognizer = undefined;
-    }
+
+    React.useEffect(() => {
+        return () => {
+          console.log('will unmount');
+        }
+      }, []);
 
     const handleClick = () => {
         if (!isRecording) {
@@ -258,9 +278,20 @@ function AudioRecordDialog(props) {
         }
     }
 
+    const handleClose = () => {
+        if (recognizer) {
+            try {
+                console.log("closing");
+                recognizer.stopContinuousRecognitionAsync(() => {}, () => {});
+                recognizer.close();
+            } catch(error) {
+
+            }
+        }
+    }
 
     return (
-        <Dialog open={isOpen} onBackdropClick={props.toggleDialogOpen} >
+        <Dialog open={isOpen} onBackdropClick={props.toggleDialogOpen} onClose={handleClose} >
             <DialogTitle id="simple-dialog-title">{"Press the mic button to start"}</DialogTitle>
             <DialogContent className={classes.main}>
                 <Fab
