@@ -8,6 +8,7 @@ import cardProps from "./cards-dashboard-types";
 import useStyles from "./cards-dashboard-styles";
 import CardDialog from "../cards-dialogue/cards-dialog";
 import { stringify } from "../../utils/StringUtils";
+import { List, ListItem, ListItemText } from "@material-ui/core";
 
 export default function CardDashboard(props: cardProps) {
   const classes = useStyles();
@@ -26,7 +27,16 @@ export default function CardDashboard(props: cardProps) {
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
             {props.person.date}
-            {stringify(props.person.transcript)}
+            <List dense={true}>
+            {stringify(props.person.transcript).map((string) => (
+              <ListItem>
+                <ListItemText
+                  primary={string}
+                />
+              </ListItem>
+              
+            ))}
+            </List>
           </Typography>
           <Typography variant="body2" component="p">
             {/* props.person.transcript */}

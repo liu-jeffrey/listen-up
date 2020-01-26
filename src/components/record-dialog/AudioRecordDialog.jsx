@@ -238,16 +238,18 @@ function AudioRecordDialog(props) {
                 }
             };
 
-            data.keyPhrases.forEach((phrase) => {
-                if (phrase.type == "CONSUMER_GOOD"
-                 || phrase.type == "LOCATION"
-                 || phrase.type == "PERSON"
-                 || phrase.type == "ORGANIZATION"
-                 || phrase.type == "OTHER") {
-                     personModel.transcript[phrase.type].push(phrase.name);
-                 }
-                 addUserData(personModel);
-            });
+            if (data && data.keyPhrases) {
+                data.keyPhrases.forEach((phrase) => {
+                    if (phrase.type === "CONSUMER_GOOD"
+                     || phrase.type === "LOCATION"
+                     || phrase.type === "PERSON"
+                     || phrase.type === "ORGANIZATION"
+                     || phrase.type === "OTHER") {
+                         personModel.transcript[phrase.type].push(phrase.name);
+                     }
+                     addUserData(personModel);
+                });
+            }
         }
     }
 

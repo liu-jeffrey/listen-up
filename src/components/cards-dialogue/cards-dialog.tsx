@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { stringify } from "../../utils/StringUtils";
 
 import dialogProps from "./cards-dialog-types";
-import { Typography } from "@material-ui/core";
+import { Typography, List, ListItem, ListItemText } from "@material-ui/core";
 
 export default function CardDialog(props: dialogProps) {
   const [scroll, setScroll] = React.useState<DialogProps["scroll"]>("paper");
@@ -39,9 +39,16 @@ export default function CardDialog(props: dialogProps) {
             tabIndex={-1}
           >
             {props.person.date}
-            {stringify(props.person.transcript).map(string => (
-              <Typography>{string}</Typography>
+            <List>
+            {stringify(props.person.transcript).map((string) => (
+              <ListItem>
+                <ListItemText
+                  primary={string}
+                />
+              </ListItem>
+              
             ))}
+            </List>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

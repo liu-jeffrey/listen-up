@@ -12,3 +12,11 @@ export interface ITranscript {
     OTHER?: string[],
     [x: string]: string[] | undefined,
 }
+
+export const TYPE_MAP = {
+    CONSUMER_GOOD: "Gift Ideas",
+    LOCATION: "Locations of Interest",
+    PERSON: "Friends",
+    ORGANIZATION: "Organization",
+    OTHER: "Other",
+}

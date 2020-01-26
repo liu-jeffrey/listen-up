@@ -18,6 +18,22 @@ firebase.initializeApp(
 
 export const db = firebase.firestore();
 
-export const addUserData = (personData: IPersonDataModel) => {
-    db.collection("people").doc(personData.name).set(personData, { merge:true })
+export const addUserData = async (personData: IPersonDataModel) => {
+    var collection = db.collection("people");
+    var docRef = collection.doc(personData.name);
+
+    var doc = await docRef.get();
+    if (doc.exists) {
+        if (personData && personData.transcript) {
+            docRef.update({
+                "transcript.CONSUMER_GOOD": firebase.firestore.FieldValue.arrayUnion(personData.transcript.CONSUMER_GOOD),
+                "transcript.LOCATION": firebase.firestore.FieldValue.arrayUnion(personData.transcript.LOCATION),
+                "transcript.PERSON": firebase.firestore.FieldValue.arrayUnion(personData.transcript.PERSON),
+                "transcript.ORGANIZATION": firebase.firestore.FieldValue.arrayUnion(personData.transcript.ORGANIZATION),
+                "transcript.OTHER": firebase.firestore.FieldValue.arrayUnion(personData.transcript.OTHER)
+            })
+        }
+    } else {
+        docRef.set(personData);
+    }
 }
