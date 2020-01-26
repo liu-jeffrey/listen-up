@@ -9,7 +9,8 @@ import { DialogWrapperProps } from "./audioRecordDialog.types.";
 import useStyles from "./audioRecordDialogStyles";
 import Fab from "@material-ui/core/Fab";
 import MicIcon from '@material-ui/icons/Mic';
-import * as SpeechSDK from 'microsoft-cognitiveservices-speech-sdk'
+import * as SpeechSDK from 'microsoft-cognitiveservices-speech-sdk';
+import classifyText from '../../utils/StringClassification';
 
 /**
  *      
@@ -48,7 +49,8 @@ function AudioRecordDialog(props) {
     }
     const RecognizedEventListener = (sender, event) => {
         console.log("Recognized: " + event.result.text);
-        GetSentimentInfo(event.result.text, {});
+        if (event.result.text)
+            GetSentimentInfo(event.result.text, {});
     }
 
     const GetSentimentInfo = (text, data) => {
@@ -114,11 +116,21 @@ function AudioRecordDialog(props) {
                 const partData = JSON.parse(this.responseText);
                 const entitiesPart = partData.documents[0].entities;
                 entitiesPart.forEach((entity) => {
+                    let augment = false;
                     data.keyPhrase.forEach((p) => {
-                        if (entity.name == p.phrase) {
+                        if (   entity.name.includes(p.phrase)
+                            || p.phrase.includes(entity.name)
+                            || p.phrase == entity.name) {
                             p.type = entity.type;
+                            augment = true;
                         }
                     });
+                    if (!augment) {
+                        data.keyPhrase.push({
+                            "phrase": entity.name,
+                            "type": entity.type
+                        });
+                    }
                 });
 
                 console.log("Done!");
@@ -161,6 +173,12 @@ function AudioRecordDialog(props) {
                 }
             });
         }
+        secondClassification(text, data);
+    }
+    
+    const secondClassification = async (text, data) => {
+        const res = await classifyText(text);
+        console.log("Google Classification: " + res);
     }
 
     const StopRecognitionSuccess = () => {
