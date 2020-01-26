@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "listenup-266222",
+  "private_key_id": "09b295fa20620c445a7d60d139dc116e2f990304",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDPKnTr+95cIsjz\nWEucprCWS9X4GhmHxKqRjwssgvPMC19CBCMg/uVgFjsQIhwvJxVjUpNgN8iPjP8s\nf9j4wL+3/msATv7S6OpPngtPHoIrpBvKPzwAjIYJdJ0qZqZ/eUt6SuLAeJKqVSMw\nATFdkKGphSoNrr29WnsZOfL/ZPEkHdEBb9qyUBTVAIUtpDOf9BCI7xKzWjBOiu9h\nKMUQMP1CObBlqmH2pSPWezhXRGAUh7TC1N2BxHdMEk7FQrIzADKoPef+nI8BHJI7\n1CbkYg2vrNNQHBvInLblJ0JC5DTWbcs6Wa2s0Jv+z97BJDEpgP70UK+K4U4S+v8i\ndCyfPSYzAgMBAAECggEAFZ3Hf3bTgpJP8jGstMF2kZLY1mowGcjn8geWpzlZeQQC\nwjUDpAYU0bbgHinWU7E5+8LPr+2CLEBjwTVB4uAx4QqssuaLPl9L+6zGX1C+omZy\n+TfUlKC/vQLXAhKd8up+zq7mWXul9MdXbu3g7x4P+vad0bmsVggNP4TwGb1i+rKV\nmfIrpp6lFdx5C/QlSYIQclE8s2mirF79eo8luezCj/yMsCLRomxv/+9lJtyYZQDh\nVwUSPssBSv+VN+eOPrUt0Kr3dqnBTflVlPOFxzpJEcyQpBpQE+98fToo+orTJfZI\nv9cVTiOhsZyek+wcd3iyVcF45HT5tpmJEewgaJjHAQKBgQD2CPiMjB8UKNOsHr2a\nWHU9u5mF52/LJA1DyBPRwE2YbMn1uhTLlBTi4/eM5/gB8f4o2jcc7GUAG0aB+g99\nfQJoBCN2T9Gi562IGQUYxv1Qs47vqGfp30zVnE8dh39RP4HPL2fEI5UalWUokaxz\nNb4yZciYLSOCVK2u6VFToiP/gQKBgQDXjnfekp655kerAichIpUzDF0C9S62c6p8\nofSoTNASNZ4srLnSVgHbLqjD+H+SEt3DxFZ6BYv8fNiFJd21eyBGiPho6WJjvhdE\nzM1H41C8e4Z04cGj5Q+GKdxEJue9UB02E4+/4utGHdJgnIFsYdqqX4tMiluLfn0+\nbIdGrJD/swKBgQDdQvATpagFfzntXq/w8IBvhhjo/VvieoebX4HDbofZ/mwaGsC8\n3G10JsPn6m11gmWp46UQ0995Gw5rsbDgj93sIVyq99l2AZhj/uxAfiQtwW1YRkE9\naF429J2J1uM+9DgPVXiiQcXD5HrW4zsNWVW1CSg/AskeWnzgAl/rMLPjAQKBgQCb\nTchLkjPOGH32Vby/gN0iRHwXD3OyfK+O0FknkQAwvnTSFzhitRjtRDbPyxCOvA0P\naTws+iYbqg+ODvQoNyfP6guf+taqqmC1byFP9BVNV2pOeAE+BmEi9rH+YFGC8l+5\ngGqHhASjJgVXGiudXPtg2SnR4bWHUYEHIsZsQxTNRQKBgQCDAVwvYgbJgJEzqwhY\nUtzfTFLQzPnYS0VHCeeyqJZn8bDsCu21I/d9pGkUZnYaoGQd2tcvVon84Gl5gt55\nJmeGR1uyhN43eBy7CF3nyI6eOVjfJE0A0nkmrFFKxDsISUV0+7uUK2s3Bksg8fwV\n1QtVqoIbaa24Mq+PsBY2vRVHGw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "oliversong@listenup-266222.iam.gserviceaccount.com",
+  "client_id": "109774869610038006163",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/oliversong%40listenup-266222.iam.gserviceaccount.com"
+}

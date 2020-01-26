@@ -221,6 +221,8 @@ function AudioRecordDialog(props) {
     }
 
     const storeData = (data) => {
+        if (speaker == null)
+            return;
         if (parseFloat(data.score) > 0.75) {
             var today = new Date();
             var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
