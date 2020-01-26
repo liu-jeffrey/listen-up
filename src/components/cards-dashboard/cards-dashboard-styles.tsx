@@ -2,7 +2,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   card: {
-    minWidth: 275
+    // minWidth: 275
+    height: "100%"
   },
   bullet: {
     display: "inline-block",
@@ -13,8 +14,8 @@ const useStyles = makeStyles({
     fontSize: 14
   },
   pos: {
-    marginBottom: 12
+    // marginBottom: 12
   }
 });
 
-export default useStyles
+export default useStyles;

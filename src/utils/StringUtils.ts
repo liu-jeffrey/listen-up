@@ -8,15 +8,21 @@ export const stringify = (transcript: ITranscript): String[] => {
 
       if (key === "friends") {
           string = "Friends";
+          string = string.concat(": ");
+
       } else if (key === "giftIdeas") {
           string = "Gift Ideas";
+          string = string.concat(": ");
+
       } else if (key === "locationsOfInterest") {
           string = "Locations of Interest";
+          string = string.concat(": ");
+
       } else if (key === "organization") {
           string = "Organizations";
-      }
+          string = string.concat(": ");
 
-      string = string.concat(": ");
+      }
 
       if (transcript !== undefined) {
         string = string.concat(transcript[key]!.join(", "));
